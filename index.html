@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Midvale Arts Council Lobby Display Options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --mac-navy: #1d2340;
+      --mac-gold: #e4b73b;
+      --mac-red: #b0303b;
+      --mac-light: #f7f5f0;
+      --mac-gray: #555555;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--mac-light);
+      color: var(--mac-navy);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--mac-navy), #060818);
+      color: #ffffff;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header .brand-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--mac-gold), var(--mac-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.25);
+    }
+
+    header .brand-text h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    header .brand-text p {
+      margin: 0.2rem 0 0;
+      font-size: 0.9rem;
+      color: #d7d7e6;
+    }
+
+    header .tagline {
+      font-size: 0.95rem;
+      max-width: 320px;
+      text-align: right;
+    }
+
+    main {
+      padding: 2rem 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mac-navy);
+      border-bottom: 3px solid var(--mac-gold);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.35rem;
+      font-size: 1.15rem;
+      color: var(--mac-red);
+    }
+
+    p {
+      margin-top: 0.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--mac-gray);
+      font-size: 0.98rem;
+    }
+
+    .intro-highlight {
+      background: #ffffff;
+      border-left: 5px solid var(--mac-gold);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .label-pill {
+      display: inline-block;
+      background: var(--mac-navy);
+      color: #ffffff;
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-weight: 650;
+      font-size: 1.02rem;
+      color: var(--mac-navy);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mac-red);
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0.25rem 0 0.75rem;
+      font-size: 0.94rem;
+      color: var(--mac-gray);
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.9rem;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.7rem 0.6rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--mac-navy);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.8rem;
+    }
+
+    tr:nth-child(even) td {
+      background: #faf9f4;
+    }
+
+    .col-header {
+      width: 22%;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 0.3rem;
+    }
+
+    .badge-best {
+      background: var(--mac-gold);
+      color: #000000;
+    }
+
+    .badge-budget {
+      background: #d6e6ff;
+      color: #003366;
+    }
+
+    .badge-premium {
+      background: #f6d1d7;
+      color: #5f0014;
+    }
+
+    .badge-wifi {
+      background: #c8f1ff;
+      color: #004b63;
+    }
+
+    .badge-nohw {
+      background: #c5f7cf;
+      color: #074018;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #777777;
+      margin-top: 0.25rem;
+    }
+
+    .recommendation-panel {
+      background: #ffffff;
+      border-radius: 0.8rem;
+      border-left: 6px solid var(--mac-red);
+      padding: 1.2rem 1.3rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    }
+
+    .recommendation-panel h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      padding: 1.25rem 2.5rem 1.75rem;
+      background: #14172c;
+      color: #bbbbcc;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-logo">
+        MAC
+      </div>
+      <div class="brand-text">
+        <h1>Midvale Arts Council</h1>
+        <p>Lobby Display Options &amp; Recommendation</p>
+      </div>
+    </div>
+    <div class="tagline">
+      Wi‑Fi managed, no extra hardware on the wall: choosing the best 50–70&quot; lobby display.
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="intro-highlight">
+        <span class="label-pill">Project Overview</span>
+        <p>
+          The proposed lobby display will run approximately <strong>24 hours per week</strong>
+          (up to 5 hours, 3 times a week and up to 9 hours once a week) to showcase upcoming productions,
+          concession menus, and community announcements for Midvale Arts Council patrons.
+        </p>
+        <p>
+          This document compares three Wi‑Fi‑enabled options for a 50–70&quot; wall‑mounted screen, all capable of cloud or network‑based
+          content management so no permanently attached computer or media box is required.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Top Models &amp; Key Features</h2>
+      <p>
+        The models below are representative Wi‑Fi/SoC options in early 2026 that support network‑based content updates.
+      </p>
+
+      <h3>Commercial Digital-Signage Displays (55&quot;) &mdash; Wi‑Fi / SoC</h3>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Samsung QM55C (QMC Series)</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K UHD commercial signage display with built‑in system‑on‑chip (SoC), Wi‑Fi, USB media playback, and support for
+            cloud‑managed schedules and playlists. Designed for 24/7 operation and professional lobbies.
+          </p>
+          <p class="note">
+            Approximate price range: around $900–$1,300 depending on reseller and configuration.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">LG 55&quot; webOS Signage (UM5/UH5)</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K IPS commercial display with LG webOS Signage, Wi‑Fi connectivity, and native support for cloud content‑management apps,
+            allowing browser‑based control without a separate PC.
+          </p>
+          <p class="note">
+            Approximate price range: around $900–$1,200 based on model and vendor.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Hisense 55&quot; 4K Digital Signage</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K commercial signage display with Android‑based SoC, Wi‑Fi, and built‑in digital signage features, supporting app‑based
+            or cloud CMS control at a more budget‑friendly price.
+          </p>
+          <p class="note">
+            Approximate price range: roughly $650–$900.
+          </p>
+        </article>
+      </div>
+
+      <h3>Business / Pro TVs (55&quot;) &mdash; Wi‑Fi, No Extra Box</h3>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Samsung BE55FX-H Business Pro TV</div>
+            <div class="card-tag"><span class="badge badge-best">Recommended</span> <span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K Business Pro TV with Wi‑Fi and a Business TV app, letting staff push slides and menus from phones or tablets
+            without a dedicated media player. Includes business‑grade warranty for extended use.
+          </p>
+          <p class="note">
+            Approximate price range: around $600–$800 for the 55&quot; model.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Samsung BE55D-H BED-H Series</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K Business TV with Wi‑Fi, Crystal UHD panel, and Smart TV features tailored for business use, controllable via
+            built‑in business tools and apps over the network.
+          </p>
+          <p class="note">
+            Approximate price range: around $600–$800.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Samsung BEFX-H 55&quot; (Retail)</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            Retail‑sold 55&quot; BEFX‑H Series Business Pro TV with Wi‑Fi and Business TV / SmartThings‑style integration, providing
+            cloud‑style signage control from phones or tablets.
+          </p>
+          <p class="note">
+            Approximate price range: about $700–$900.
+          </p>
+        </article>
+      </div>
+
+      <h3>Consumer Smart TVs (55&quot;) &mdash; Wi‑Fi Apps, No Box</h3>
+      <p class="note">
+        These options can run signage apps over Wi‑Fi (no HDMI box), but still carry consumer‑TV warranty and durability limitations for commercial use.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">TCL QM6K 55&quot; Mini‑LED</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K Google TV with high brightness and support for Android/Google TV signage apps, allowing cloud‑managed signage via Wi‑Fi only.
+          </p>
+          <p class="note">
+            Approximate price range: around $500–$650.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Hisense U7 Series 55&quot;</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            55&quot; 4K Google TV with strong brightness and Android‑based app support, usable with cloud signage software directly on
+            the TV over Wi‑Fi.
+          </p>
+          <p class="note">
+            Approximate price range: roughly $550–$700.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Mainstream 55&quot; 4K Android / Google TV</div>
+            <div class="card-tag"><span class="badge badge-wifi">Wi‑Fi</span> <span class="badge badge-nohw">No external player</span></div>
+          </div>
+          <p>
+            Various 55&quot; Android / Google TVs can install signage apps directly and connect to Wi‑Fi dashboards without an HDMI media box,
+            though commercial usage is not their primary design.
+          </p>
+          <p class="note">
+            Approximate price range: about $350–$700.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Display Options</h2>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Commercial Digital-Signage Display</div>
+            <div class="card-tag">Wi‑Fi SoC Signage</div>
+          </div>
+          <p>
+            Purpose‑built commercial display with built‑in media player, Wi‑Fi, and a signage operating system, so content is managed
+            over the network with no permanent external hardware.
+          </p>
+          <h3>Typical Use</h3>
+          <ul>
+            <li>High‑traffic venues running content all day, every day.</li>
+            <li>Multiple screens using centralized, cloud‑based content control.</li>
+            <li>Situations where uptime and remote management are critical.</li>
+          </ul>
+          <h3>Benefits</h3>
+          <ul>
+            <li>Rated for long‑hour use (often 16/7 or 24/7) with robust components.</li>
+            <li>Higher brightness and anti‑glare for bright lobbies.</li>
+            <li>Commercial warranty that explicitly covers signage use.</li>
+            <li>Built‑in Wi‑Fi/SoC for USB or cloud playback without a separate PC.</li>
+          </ul>
+          <h3>Limitations</h3>
+          <ul>
+            <li>Higher up‑front cost than TVs.</li>
+            <li>Signage CMS setup may be more involved at first.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Business / Pro TV</div>
+            <div class="card-tag">Wi‑Fi, No Extra Box</div>
+          </div>
+          <p>
+            A Wi‑Fi‑enabled “business” TV that behaves like a smart TV but includes business signage tools and warranty, letting MAC
+            update content via mobile or web apps with no external player.
+          </p>
+          <h3>Typical Use</h3>
+          <ul>
+            <li>Small businesses, lobbies, and waiting areas.</li>
+            <li>Moderate to extended daily use.</li>
+            <li>One or a few screens managed over Wi‑Fi by non‑technical staff.</li>
+          </ul>
+          <h3>Benefits</h3>
+          <ul>
+            <li>Balanced price vs. durability; cheaper than full signage displays.</li>
+            <li>Business‑grade warranty for signage and extended hours.</li>
+            <li>Wi‑Fi + apps: upload slides, menus, and promos from phone or browser.</li>
+            <li>No need for a permanent external PC or HDMI player.</li>
+          </ul>
+          <h3>Limitations</h3>
+          <ul>
+            <li>Less advanced than enterprise signage platforms.</li>
+            <li>Not designed for 24/7 operation like some high‑end signage models.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-title">Consumer Smart TV + Apps</div>
+            <div class="card-tag">Wi‑Fi App Signage</div>
+          </div>
+          <p>
+            A Wi‑Fi smart TV (Android/Google TV) running a signage app directly, with content managed via a cloud dashboard, avoiding an external box but
+            still using consumer‑grade hardware and warranty.
+          </p>
+          <h3>Typical Use</h3>
+          <ul>
+            <li>Very budget‑constrained venues needing basic signage.</li>
+            <li>Moderate daily viewing where occasional replacement is acceptable.</li>
+            <li>One or two screens managed via a web‑based signage service.</li>
+          </ul>
+          <h3>Benefits</h3>
+          <ul>
+            <li>Lowest up‑front cost for a Wi‑Fi‑managed 4K display.</li>
+            <li>No HDMI media box required; just install the signage app on the TV.</li>
+            <li>Flexible cloud CMS options from third‑party providers.</li>
+          </ul>
+          <h3>Limitations</h3>
+          <ul>
+            <li>Consumer warranty often excludes commercial/signage use.</li>
+            <li>Shorter expected lifespan under signage‑type duty cycles.</li>
+            <li>Reliance on app stability on a consumer TV platform.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Side‑by‑Side Comparison</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="col-header">Category</th>
+            <th>Commercial Digital-Signage Display</th>
+            <th>Business / Pro TV</th>
+            <th>Consumer Smart TV + Apps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Typical price (55–65&quot;)</td>
+            <td>
+              Higher‑end pricing for Wi‑Fi commercial signage displays.
+              <div class="note">
+                Approximate initial budget range: <strong>$1,200–$2,500</strong> for a 55–65&quot; Wi‑Fi signage display (hardware only).
+              </div>
+              <div class="note">
+                Approximate annual budget line items: signage CMS license if using a cloud platform (roughly $300–$800/year).
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-best">Recommended value</span>
+              Mid‑range pricing; between consumer TVs and full commercial signage.
+              <div class="note">
+                Approximate initial budget range: <strong>$700–$1,400</strong> for a 55–65&quot; Wi‑Fi Business/Pro TV (hardware only).
+              </div>
+              <div class="note">
+                Approximate annual budget line items: optional signage/template app subscriptions (roughly $0–$300/year).
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-budget">Lowest cost</span>
+              Most affordable option when using Wi‑Fi signage apps directly on the TV.
+              <div class="note">
+                Approximate initial budget range: <strong>$350–$800</strong> for a 55–65&quot; smart TV; cloud signage apps may have a small license fee.
+              </div>
+              <div class="note">
+                Approximate annual budget line items: cloud signage software (roughly $0–$300/year), plus increased replacement reserve.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Wi‑Fi / Cloud management</td>
+            <td>Built‑in Wi‑Fi and signage OS enable USB and cloud CMS playback with no external player required.</td>
+            <td>Wi‑Fi and Business TV apps allow content updates from phones/tablets or web without added hardware.</td>
+            <td>Wi‑Fi smart TV platform runs signage apps directly; content managed from a cloud dashboard.</td>
+          </tr>
+          <tr>
+            <td>External hardware needed?</td>
+            <td><span class="badge badge-nohw">Not required</span> External player optional only for special use cases.</td>
+            <td><span class="badge badge-nohw">Not required</span> Core signage works over Wi‑Fi apps.</td>
+            <td><span class="badge badge-nohw">Not required</span> No HDMI box needed if using onboard apps.</td>
+          </tr>
+          <tr>
+            <td>Designed daily usage</td>
+            <td>Often 16/7 or 24/7 certified; MAC schedule is very light by comparison.</td>
+            <td>Rated for extended business hours (for example, up to 16 hours/day).</td>
+            <td>Designed for home viewing; heavier signage‑type use may shorten lifespan.</td>
+          </tr>
+          <tr>
+            <td>Suitability for MAC schedule<br><span class="note">(Approx. 24 hours/week)</span></td>
+            <td>More than sufficient; long‑term headroom for expanded use.</td>
+            <td>Very comfortable; duty cycle aligns well with lobby use.</td>
+            <td>Acceptable for budget‑driven scenarios but with higher replacement risk.</td>
+          </tr>
+          <tr>
+            <td>Brightness &amp; visibility</td>
+            <td>Higher brightness and anti‑glare for bright lobbies.</td>
+            <td>Good brightness appropriate for indoor lobbies.</td>
+            <td>Varies by model; fine for most indoor spaces but may be more reflective.</td>
+          </tr>
+          <tr>
+            <td>Warranty for signage use</td>
+            <td>Commercial warranties explicitly support signage usage.</td>
+            <td>Business warranties allow extended hours in commercial environments.</td>
+            <td>Many consumer warranties exclude commercial/signage use.</td>
+          </tr>
+          <tr>
+            <td>Best fit summary</td>
+            <td><span class="badge badge-premium">Premium Wi‑Fi signage</span> Ideal for multiple screens and advanced cloud control.</td>
+            <td><span class="badge badge-best">Best Wi‑Fi fit</span> Strong balance of cost, simplicity, and cloud‑style control for a single lobby screen.</td>
+            <td><span class="badge badge-budget">Budget Wi‑Fi</span> Good only when budget is very tight and earlier replacement risk is acceptable.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Total Cost of Ownership (TCO) Considerations</h2>
+      <p>
+        Total Cost of Ownership looks beyond the purchase price and includes expected lifespan, replacement risk, software/CMS fees,
+        and the staff time required to keep content current.
+      </p>
+
+      <h3>Commercial Digital-Signage Display &mdash; TCO</h3>
+      <ul>
+        <li><strong>Hardware lifespan:</strong> Often 5–7+ years in continuous or near‑continuous use.</li>
+        <li><strong>Replacement risk:</strong> Low due to commercial design and warranty.</li>
+        <li><strong>Cloud costs:</strong> Cloud CMS licenses can add several hundred dollars per year depending on vendor and features.</li>
+        <li><strong>Staff time:</strong> Moderate upfront to configure, then efficient for scheduled content across future additional screens.</li>
+        <li><strong>Overall TCO:</strong> Highest CapEx but lowest risk of downtime and best scalability if MAC later adds more Wi‑Fi signage screens.</li>
+      </ul>
+
+      <h3>Business / Pro TV &mdash; TCO</h3>
+      <ul>
+        <li><strong>Hardware lifespan:</strong> Typically 5–7 years under business‑hour usage.</li>
+        <li><strong>Replacement risk:</strong> Lower than consumer TVs thanks to business‑grade design and warranty.</li>
+        <li><strong>Cloud / app costs:</strong> Many business TV apps are free or low‑cost; CMS costs can be minimal or avoided at this scale.</li>
+        <li><strong>Staff time:</strong> Low to moderate; mobile and web tools are designed for quick updates.</li>
+        <li><strong>Overall TCO:</strong> Very favorable for a single Wi‑Fi‑managed lobby screen, with minimal hardware complexity.</li>
+      </ul>
+
+      <h3>Consumer Smart TV + Apps &mdash; TCO</h3>
+      <ul>
+        <li><strong>Hardware lifespan:</strong> Often 2–5 years in signage‑like duty cycles.</li>
+        <li><strong>Replacement risk:</strong> Higher; consumer sets used for signage are more prone to failure or image retention.</li>
+        <li><strong>Cloud costs:</strong> Signage apps for Android/Google TV range from free tiers to a few hundred dollars per year.</li>
+        <li><strong>Staff time:</strong> Moderate; relies on third‑party apps and updates on a consumer platform.</li>
+        <li><strong>Overall TCO:</strong> Lowest initial cost but higher probability of earlier replacement, eroding savings over 5–7 years.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Sample Budget Snapshot (For Planning)</h2>
+      <p>
+        Figures below are illustrative and should be refined with actual quotes. They frame CapEx vs. OpEx for a Wi‑Fi/cloud‑managed lobby display.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="col-header">Line Item</th>
+            <th>Commercial Digital-Signage Display</th>
+            <th>Business / Pro TV</th>
+            <th>Consumer Smart TV + Apps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CapEx: Screen + Mount</td>
+            <td>
+              Display: ~$1,200–$2,500<br>
+              Wall mount &amp; cabling: ~$150–$300
+            </td>
+            <td>
+              Display: ~$700–$1,400<br>
+              Wall mount &amp; cabling: ~$150–$300
+            </td>
+            <td>
+              TV: ~$350–$800<br>
+              Wall mount &amp; cabling: ~$150–$300
+            </td>
+          </tr>
+          <tr>
+            <td>OpEx: Software / Subscriptions (Annual)</td>
+            <td>
+              Cloud signage CMS: roughly $300–$800/year if used.
+            </td>
+            <td>
+              Optional business TV or signage apps: roughly $0–$300/year.
+            </td>
+            <td>
+              Cloud signage app: roughly $0–$300/year depending on provider and features.
+            </td>
+          </tr>
+          <tr>
+            <td>OpEx: Maintenance &amp; Replacement Reserve</td>
+            <td>
+              Low expected replacement frequency in 5–7 years; modest contingency reserve suggested.
+            </td>
+            <td>
+              Moderate reserve; life expectancy is good at MAC usage levels.
+            </td>
+            <td>
+              Higher reserve recommended, anticipating possible replacement within 3–5 years.
+            </td>
+          </tr>
+          <tr>
+            <td>Estimated 5–7 Year TCO Trend</td>
+            <td>
+              Highest initial CapEx, lowest risk of early replacement; best for multi‑screen expansion.
+            </td>
+            <td>
+              Balanced CapEx and OpEx; attractive Wi‑Fi/cloud solution for one lobby screen.
+            </td>
+            <td>
+              Lowest CapEx, but higher likelihood of mid‑term replacement and more troubleshooting.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Suggested Usage &amp; Content Approach</h2>
+
+      <h3>Commercial Digital-Signage Display &mdash; Wi‑Fi / Cloud Usage</h3>
+      <ul>
+        <li>Connect each display to the venue’s secure Wi‑Fi and register it with a cloud CMS.</li>
+        <li>Use scheduled playlists: pre‑show timelines, intermission menus, sponsor spots, and season announcements.</li>
+        <li>Plan ahead for additional future screens (box office, concessions, hallways) using the same cloud dashboard.</li>
+      </ul>
+
+      <h3>Business / Pro TV &mdash; Wi‑Fi / App Usage</h3>
+      <ul>
+        <li>Connect the TV to Wi‑Fi and configure the Business TV or signage app for MAC’s account.</li>
+        <li>Push slides, menus, QR codes, and show art directly from phones, tablets, or a browser, updating weekly per production.</li>
+        <li>Rely on simple playlists and templates instead of complex enterprise CMS tools, keeping volunteer workflow straightforward.</li>
+      </ul>
+
+      <h3>Consumer Smart TV + Apps &mdash; Wi‑Fi Signage</h3>
+      <ul>
+        <li>Install a cloud signage app on the TV, connect over Wi‑Fi, and manage content via a web dashboard.</li>
+        <li>Keep the schedule to around 24 hours/week and power off when not needed to reduce wear.</li>
+        <li>Plan for the possibility of replacement after several years if panel wear or app stability becomes an issue.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Recommendation for Midvale Arts Council</h2>
+
+      <div class="recommendation-panel">
+        <h3>Primary Recommendation: Wi‑Fi Business / Pro TV (55–65&quot;)</h3>
+        <p>
+          Given the planned usage of approximately 24 hours per week, the desire to avoid extra hardware, and the Council&#8217;s non‑profit budget,
+          a <strong>Wi‑Fi‑enabled Business / Pro TV</strong> offers the best balance of cost, durability, and cloud‑style content management.
+        </p>
+        <p>
+          It is designed for extended business hours, supports digital signage under warranty, and lets staff and volunteers update event slides,
+          concession menus, and sponsor messages over Wi‑Fi using simple apps—no permanent PC or media box mounted behind the screen.
+        </p>
+        <p>
+          A Wi‑Fi commercial digital‑signage display would provide maximum longevity and scalability, especially if MAC plans multiple screens and a full
+          cloud CMS, but its higher cost is not essential for a single moderate‑use lobby display. A consumer smart TV with signage apps can work in a pinch,
+          yet comes with more risk around warranty and long‑term reliability.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Prepared for the Midvale Arts Council Board of Directors.
+    </p>
+  </footer>
+</body>
+</html>
